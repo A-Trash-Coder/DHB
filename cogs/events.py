@@ -13,7 +13,7 @@ class Events(commands.Cog):
     async def on_message(self, message):
         if message.author == self.bot.user:
             return
-
+            
         guildautomod = await self.bot.pool.fetch("SELECT * FROM lightswitch WHERE guildid = $1", message.guild.id)
         automodsettings = await self.bot.pool.fetch("SELECT * FROM automodsettings WHERE guildid = $1", message.guild.id)
         if guildautomod == []:
@@ -25,22 +25,15 @@ class Events(commands.Cog):
         if guildautomod[0]["automoderation"] == False:
             return
 
-        if automodsettings[0]["cursewords"] == False:
+        if automodsettings[0]["discordinvites"] == False:
             return
 
-        cursewords = await self.bot.pool.fetch("SELECT * FROM cursewords WHERE guildid = $1", message.guild.id)
-
-        if cursewords == []:
-            return
-
-        for curseword in cursewords:
-            word = curseword["word"]
-            if word in message.content:
-                if message.content.startswith("/removeword"):
-                    return
-
+        if message.content.startswith("discord.gg/"):
                 await message.delete()
-                await message.channel.send(f"{message.author.mention}, you are not allowed to say that word in this server!")
+                await message.channel.send(f"{message.author.mention}, you are not allowed to send invites in this server!")
+        elif message.content.startswith("discordapp.com/invite"):
+            await message.delete()
+            await message.channel.send(f"{message.author.mention}, you are not allowed to send invites in this server!")
 
     @commands.Cog.listener()
     async def on_message_delete(self, message):
