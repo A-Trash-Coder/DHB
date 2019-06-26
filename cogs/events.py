@@ -36,7 +36,7 @@ class Events(commands.Cog):
         for curseword in cursewords:
             word = curseword["word"]
             if word in message.content:
-                if message.content.startswith("/addword") or message.content.startswith("/removeword"):
+                if message.content.startswith("/removeword"):
                     return
 
                 await message.delete()
