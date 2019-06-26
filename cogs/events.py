@@ -14,18 +14,18 @@ class Events(commands.Cog):
         if message.author == self.bot.user:
             return
 
-        guildautomod = await self.bot.pool.fetchrow("SELECT * FROM lightswitch WHERE guildid = $1", message.guild.id)
-        automodsettings = await self.bot.pool.fetchrow("SELECT * FROM automodsettings WHERE guildid = $1", message.guild.id)
+        guildautomod = await self.bot.pool.fetch("SELECT * FROM lightswitch WHERE guildid = $1", message.guild.id)
+        automodsettings = await self.bot.pool.fetch("SELECT * FROM automodsettings WHERE guildid = $1", message.guild.id)
         if guildautomod == []:
             return
 
         if automodsettings == []:
             return
 
-        if guildautomod[0]["automoderation"] == False:
+        if guildautomod["automoderation"] == False:
             return
 
-        if automodsettings[0]["cursewords"] == False:
+        if automodsettings["cursewords"] == False:
             return
 
         cursewords = await self.bot.pool.fetch("SELECT * FROM cursewords WHERE guildid = $1", message.guild.id)
@@ -47,18 +47,18 @@ class Events(commands.Cog):
         if message.author == self.bot.user:
             return
             
-        guildautomod = await self.bot.pool.fetchrow("SELECT * FROM lightswitch WHERE guildid = $1", message.guild.id)
-        automodsettings = await self.bot.pool.fetchrow("SELECT * FROM automodsettings WHERE guildid = $1", message.guild.id)
+        guildautomod = await self.bot.pool.fetch("SELECT * FROM lightswitch WHERE guildid = $1", message.guild.id)
+        automodsettings = await self.bot.pool.fetch("SELECT * FROM automodsettings WHERE guildid = $1", message.guild.id)
         if guildautomod == []:
             return
 
         if automodsettings == []:
             return
 
-        if guildautomod[0]["automoderation"] == False:
+        if guildautomod["automoderation"] == False:
             return
 
-        if automodsettings[0]["discordinvites"] == False:
+        if automodsettings["discordinvites"] == False:
             return
 
         if message.content.startswith("discord.gg/"):
@@ -70,11 +70,11 @@ class Events(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message_delete(self, message):
-        guild = await self.bot.pool.fetchrow("SELECT * FROM loggingsettings WHERE guildid = $1", message.guild.id)
+        guild = await self.bot.pool.fetch("SELECT * FROM loggingsettings WHERE guildid = $1", message.guild.id)
         if guild == []:
             return
 
-        if guild[0]["message_delete"] == False:
+        if guild["message_delete"] == False:
             return
 
         logchannel = self.bot.get_channel(guild["channelid"])
@@ -92,11 +92,11 @@ class Events(commands.Cog):
 
     @commands.Cog.listener()
     async def on_member_join(self, member):
-        guild = await self.bot.pool.fetchrow("SELECT * FROM loggingsettings WHERE guildid = $1", member.guild.id)
+        guild = await self.bot.pool.fetch("SELECT * FROM loggingsettings WHERE guildid = $1", member.guild.id)
         if guild == []:
             return
         
-        if guild[0]["member_join"] == False:
+        if guild["member_join"] == False:
             return
 
         logchannel = self.bot.get_channel(guild["channelid"])
@@ -112,11 +112,11 @@ class Events(commands.Cog):
 
     @commands.Cog.listener()
     async def on_member_remove(self, member):
-        guild = await self.bot.pool.fetchrow("SELECT * FROM loggingsettings WHERE guildid = $1", member.guild.id)
+        guild = await self.bot.pool.fetch("SELECT * FROM loggingsettings WHERE guildid = $1", member.guild.id)
         if guild == []:
             return
         
-        if guild[0]["member_leave"] == False:
+        if guild["member_leave"] == False:
             return
 
         logchannel = self.bot.get_channel(guild["channelid"])
@@ -132,11 +132,11 @@ class Events(commands.Cog):
 
     @commands.Cog.listener()
     async def on_member_ban(self, guild, user):
-        guild = await self.bot.pool.fetchrow("SELECT * FROM loggingsettings WHERE guildid = $1", guild.id)
+        guild = await self.bot.pool.fetch("SELECT * FROM loggingsettings WHERE guildid = $1", guild.id)
         if guild == []:
             return
         
-        if guild[0]["member_ban"] == False:
+        if guild["member_ban"] == False:
             return
 
         logchannel = self.bot.get_channel(guild["channelid"])
@@ -156,7 +156,7 @@ class Events(commands.Cog):
         if guild == []:
             return
         
-        if guild[0]["member_unban"] == False:
+        if guild["member_unban"] == False:
             return
 
         logchannel = self.bot.get_channel(guild["channelid"])
@@ -172,11 +172,11 @@ class Events(commands.Cog):
 
     @commands.Cog.listener()
     async def on_guild_channel_create(self, channel):
-        guild = await self.bot.pool.fetchrow("SELECT * FROM loggingsettings WHERE guildid = $1", channel.guild.id)
+        guild = await self.bot.pool.fetch("SELECT * FROM loggingsettings WHERE guildid = $1", channel.guild.id)
         if guild == []:
             return
 
-        if guild[0]["channel_create"] == False:
+        if guild["channel_create"] == False:
             return
         
         logchannel = self.bot.get_channel(guild["channelid"])
@@ -192,11 +192,11 @@ class Events(commands.Cog):
 
     @commands.Cog.listener()
     async def on_guild_channel_delete(self, channel):
-        guild = await self.bot.pool.fetchrow("SELECT * FROM loggingsettings WHERE guildid = $1", channel.guild.id)
+        guild = await self.bot.pool.fetch("SELECT * FROM loggingsettings WHERE guildid = $1", channel.guild.id)
         if guild == []:
             return
 
-        if guild[0]["channel_delete"] == False:
+        if guild["channel_delete"] == False:
             return
         
         logchannel = self.bot.get_channel(guild["channelid"])
@@ -212,11 +212,11 @@ class Events(commands.Cog):
 
     @commands.Cog.listener()
     async def on_guild_role_create(self, role):
-        guild = await self.bot.pool.fetchrow("SELECT * FROM loggingsettings WHERE guildid = $1", role.guild.id)
+        guild = await self.bot.pool.fetch("SELECT * FROM loggingsettings WHERE guildid = $1", role.guild.id)
         if guild == []:
             return
 
-        if guild[0]["role_create"] == False:
+        if guild["role_create"] == False:
             return
 
         logchannel = self.bot.get_channel(guild["channelid"])
@@ -232,11 +232,11 @@ class Events(commands.Cog):
 
     @commands.Cog.listener()
     async def on_guild_role_delete(self, role):
-        guild = await self.bot.pool.fetchrow("SELECT * FROM loggingsettings WHERE guildid = $1", role.guild.id)
+        guild = await self.bot.pool.fetch("SELECT * FROM loggingsettings WHERE guildid = $1", role.guild.id)
         if guild == []:
             return
 
-        if guild[0]["role_delete"] == False:
+        if guild["role_delete"] == False:
             return
 
         logchannel = self.bot.get_channel(guild["channelid"])
@@ -253,11 +253,11 @@ class Events(commands.Cog):
     @commands.Cog.listener()
     async def on_bulk_message_delete(self, messages):
         randommsg = random.choice(messages)
-        guild = await self.bot.pool.fetchrow("SELECT * FROM loggingsettings WHERE guildid = $1", randommsg.guild.id)
+        guild = await self.bot.pool.fetch("SELECT * FROM loggingsettings WHERE guildid = $1", randommsg.guild.id)
         if guild == []:
             return
         
-        if guild[0]["bulk_message_delete"] == False:
+        if guild["bulk_message_delete"] == False:
             return
 
         logchannel = self.bot.get_channel(guild["channelid"])
@@ -273,11 +273,11 @@ class Events(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message_edit(self, before, after):
-        guild = await self.bot.pool.fetchrow("SELECT * FROM loggingsettings WHERE guildid = $1", after.guild.id)
+        guild = await self.bot.pool.fetch("SELECT * FROM loggingsettings WHERE guildid = $1", after.guild.id)
         if guild == []:
             return
 
-        if guild[0]["message_edit"] == False:
+        if guild["message_edit"] == False:
             return
 
         logchannel = self.bot.get_channel(guild["channelid"])
