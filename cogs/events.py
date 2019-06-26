@@ -43,32 +43,6 @@ class Events(commands.Cog):
                 await message.channel.send(f"{message.author.mention}, you are not allowed to say that word in this server!")
 
     @commands.Cog.listener()
-    async def on_message(self, message):
-        if message.author == self.bot.user:
-            return
-            
-        guildautomod = await self.bot.pool.fetch("SELECT * FROM lightswitch WHERE guildid = $1", message.guild.id)
-        automodsettings = await self.bot.pool.fetch("SELECT * FROM automodsettings WHERE guildid = $1", message.guild.id)
-        if guildautomod == []:
-            return
-
-        if automodsettings == []:
-            return
-
-        if guildautomod[0]["automoderation"] == False:
-            return
-
-        if automodsettings[0]["discordinvites"] == False:
-            return
-
-        if message.content.startswith("discord.gg/"):
-                await message.delete()
-                await message.channel.send(f"{message.author.mention}, you are not allowed to send invites in this server!")
-        elif message.content.startswith("discordapp.com/invite"):
-            await message.delete()
-            await message.channel.send(f"{message.author.mention}, you are not allowed to send invites in this server!")
-
-    @commands.Cog.listener()
     async def on_message_delete(self, message):
         guild = await self.bot.pool.fetch("SELECT * FROM loggingsettings WHERE guildid = $1", message.guild.id)
         if guild == []:
