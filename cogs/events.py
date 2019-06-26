@@ -34,7 +34,7 @@ class Events(commands.Cog):
             return
 
         for curseword in cursewords:
-            word = curseword[0]["word"]
+            word = curseword["word"]
             if word in message.content:
                 if message.content.startswith("/addword") or message.content.startswith("/removeword"):
                     return
