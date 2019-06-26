@@ -77,7 +77,7 @@ class Events(commands.Cog):
         if guild[0]["message_delete"] == False:
             return
 
-        logchannel = self.bot.get_channel(guild["channelid"])
+        logchannel = self.bot.get_channel(guild[0]["channelid"])
 
         if logchannel == None:
             return
@@ -99,7 +99,7 @@ class Events(commands.Cog):
         if guild[0]["member_join"] == False:
             return
 
-        logchannel = self.bot.get_channel(guild["channelid"])
+        logchannel = self.bot.get_channel(guild[0]["channelid"])
 
         if logchannel == None:
             return
@@ -119,7 +119,7 @@ class Events(commands.Cog):
         if guild[0]["member_leave"] == False:
             return
 
-        logchannel = self.bot.get_channel(guild["channelid"])
+        logchannel = self.bot.get_channel(guild[0]["channelid"])
 
         if logchannel == None:
             return
@@ -139,7 +139,7 @@ class Events(commands.Cog):
         if guild[0]["member_ban"] == False:
             return
 
-        logchannel = self.bot.get_channel(guild["channelid"])
+        logchannel = self.bot.get_channel(guild[0]["channelid"])
 
         if logchannel == None:
             return
@@ -159,7 +159,7 @@ class Events(commands.Cog):
         if guild[0]["member_unban"] == False:
             return
 
-        logchannel = self.bot.get_channel(guild["channelid"])
+        logchannel = self.bot.get_channel(guild[0]["channelid"])
 
         if logchannel == None:
             return
@@ -179,7 +179,7 @@ class Events(commands.Cog):
         if guild[0]["channel_create"] == False:
             return
         
-        logchannel = self.bot.get_channel(guild["channelid"])
+        logchannel = self.bot.get_channel(guild[0]["channelid"])
 
         if logchannel == None:
             return
@@ -199,7 +199,7 @@ class Events(commands.Cog):
         if guild[0]["channel_delete"] == False:
             return
         
-        logchannel = self.bot.get_channel(guild["channelid"])
+        logchannel = self.bot.get_channel(guild[0]["channelid"])
 
         if logchannel == None:
             return
@@ -219,7 +219,7 @@ class Events(commands.Cog):
         if guild[0]["role_create"] == False:
             return
 
-        logchannel = self.bot.get_channel(guild["channelid"])
+        logchannel = self.bot.get_channel(guild[0]["channelid"])
 
         if logchannel == None:
             return
@@ -239,7 +239,7 @@ class Events(commands.Cog):
         if guild[0]["role_delete"] == False:
             return
 
-        logchannel = self.bot.get_channel(guild["channelid"])
+        logchannel = self.bot.get_channel(guild[0]["channelid"])
 
         if logchannel == None:
             return
@@ -260,7 +260,7 @@ class Events(commands.Cog):
         if guild[0]["bulk_message_delete"] == False:
             return
 
-        logchannel = self.bot.get_channel(guild["channelid"])
+        logchannel = self.bot.get_channel(guild[0]["channelid"])
 
         if logchannel == None:
             return
@@ -280,7 +280,7 @@ class Events(commands.Cog):
         if guild[0]["message_edit"] == False:
             return
 
-        logchannel = self.bot.get_channel(guild["channelid"])
+        logchannel = self.bot.get_channel(guild[0]["channelid"])
 
         if logchannel == None:
             return
