@@ -22,10 +22,10 @@ class Events(commands.Cog):
         if automodsettings == []:
             return
 
-        if guildautomod["automoderation"] == False:
+        if guildautomod[0]["automoderation"] == False:
             return
 
-        if automodsettings["cursewords"] == False:
+        if automodsettings[0]["cursewords"] == False:
             return
 
         cursewords = await self.bot.pool.fetch("SELECT * FROM cursewords WHERE guildid = $1", message.guild.id)
@@ -55,10 +55,10 @@ class Events(commands.Cog):
         if automodsettings == []:
             return
 
-        if guildautomod["automoderation"] == False:
+        if guildautomod[0]["automoderation"] == False:
             return
 
-        if automodsettings["discordinvites"] == False:
+        if automodsettings[0]["discordinvites"] == False:
             return
 
         if message.content.startswith("discord.gg/"):
@@ -74,7 +74,7 @@ class Events(commands.Cog):
         if guild == []:
             return
 
-        if guild["message_delete"] == False:
+        if guild[0]["message_delete"] == False:
             return
 
         logchannel = self.bot.get_channel(guild["channelid"])
@@ -96,7 +96,7 @@ class Events(commands.Cog):
         if guild == []:
             return
         
-        if guild["member_join"] == False:
+        if guild[0]["member_join"] == False:
             return
 
         logchannel = self.bot.get_channel(guild["channelid"])
@@ -116,7 +116,7 @@ class Events(commands.Cog):
         if guild == []:
             return
         
-        if guild["member_leave"] == False:
+        if guild[0]["member_leave"] == False:
             return
 
         logchannel = self.bot.get_channel(guild["channelid"])
@@ -136,7 +136,7 @@ class Events(commands.Cog):
         if guild == []:
             return
         
-        if guild["member_ban"] == False:
+        if guild[0]["member_ban"] == False:
             return
 
         logchannel = self.bot.get_channel(guild["channelid"])
@@ -156,7 +156,7 @@ class Events(commands.Cog):
         if guild == []:
             return
         
-        if guild["member_unban"] == False:
+        if guild[0]["member_unban"] == False:
             return
 
         logchannel = self.bot.get_channel(guild["channelid"])
@@ -176,7 +176,7 @@ class Events(commands.Cog):
         if guild == []:
             return
 
-        if guild["channel_create"] == False:
+        if guild[0]["channel_create"] == False:
             return
         
         logchannel = self.bot.get_channel(guild["channelid"])
@@ -196,7 +196,7 @@ class Events(commands.Cog):
         if guild == []:
             return
 
-        if guild["channel_delete"] == False:
+        if guild[0]["channel_delete"] == False:
             return
         
         logchannel = self.bot.get_channel(guild["channelid"])
@@ -216,7 +216,7 @@ class Events(commands.Cog):
         if guild == []:
             return
 
-        if guild["role_create"] == False:
+        if guild[0]["role_create"] == False:
             return
 
         logchannel = self.bot.get_channel(guild["channelid"])
@@ -236,7 +236,7 @@ class Events(commands.Cog):
         if guild == []:
             return
 
-        if guild["role_delete"] == False:
+        if guild[0]["role_delete"] == False:
             return
 
         logchannel = self.bot.get_channel(guild["channelid"])
@@ -257,7 +257,7 @@ class Events(commands.Cog):
         if guild == []:
             return
         
-        if guild["bulk_message_delete"] == False:
+        if guild[0]["bulk_message_delete"] == False:
             return
 
         logchannel = self.bot.get_channel(guild["channelid"])
@@ -277,7 +277,7 @@ class Events(commands.Cog):
         if guild == []:
             return
 
-        if guild["message_edit"] == False:
+        if guild[0]["message_edit"] == False:
             return
 
         logchannel = self.bot.get_channel(guild["channelid"])
