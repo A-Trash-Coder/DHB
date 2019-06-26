@@ -157,7 +157,7 @@ class Moderation(commands.Cog):
         await self.sendlog(ctx, "Warn", user, r)
         await self.bot.pool.execute("INSERT INTO warns VALUES ($1, $2, $3, $4, $5, $6)",
         user.id, ctx.guild.id, ctx.author.id, ctx.author.name,
-        reason, datetime.datetime.utcnow())
+        reason)
 
         em = discord.Embed(color = discord.Color.blurple())
         em.add_field(name = "Done!", value = f"{user.mention} has been warned.")
