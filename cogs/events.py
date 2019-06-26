@@ -28,7 +28,7 @@ class Events(commands.Cog):
         if automodsettings[0]["cursewords"] == False:
             return
 
-        cursewords = await self.bot.pool.fetchrow("SELECT * FROM cursewords WHERE guildid = $1", message.guild.id)
+        cursewords = await self.bot.pool.fetch("SELECT * FROM cursewords WHERE guildid = $1", message.guild.id)
 
         if cursewords == []:
             return
