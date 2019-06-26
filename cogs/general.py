@@ -25,7 +25,7 @@ class General(commands.Cog):
         embed.add_field(name = "Developers", value = "Kowlin#4417 & A Trash Coder#0981", inline = False)
         embed.add_field(name = "Library", value = "discord.py rewrite", inline = False)
         embed.add_field(name = "Source Code", value = "[Click here](https://github.com/kowlintechnologies/DHB)", inline = False)
-        embed.add_field(name = "Links", value = "[Docs](https://dhb-documentation.readthedocs.io/en/latest/index.html) | [Support](https://discord.gg/KEkwrwd) | [Invite](https://discord.gg/KEkwrwd)")
+        embed.add_field(name = "Links", value = "[Docs](https://dhb-documentation.readthedocs.io/en/latest/index.html) | [Support](https://discord.gg/KEkwrwd) | [Invite](https://discordapp.com/api/oauth2/authorize?client_id=592811241756688405&permissions=2080762998&scope=bot)")
         await ctx.send(embed = embed)
 
 def setup(bot):
