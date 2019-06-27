@@ -69,7 +69,7 @@ class General(commands.Cog):
         embed.add_field(name = "Status", value = user.status)
         embed.add_field(name = "Activity:", value = user.activity.name)
         embed.add_field(name = "Highest Role", value = user.top_role)
-        embed.add_field(name = ( "​" ), value = ( "​" ))
+        embed.add_field(name = ( "​" ), value = ( "​" ), inline = False)
         embed.add_field(name = "Kicks:", value = kicks)
         embed.add_field(name = "Bans:", value = bans)
         embed.add_field(name = "Warns:", value = warns)
