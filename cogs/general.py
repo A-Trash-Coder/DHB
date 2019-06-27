@@ -43,5 +43,11 @@ class General(commands.Cog):
         embed.set_thumbnail(url=ctx.guild.icon_url)
         await ctx.send(embed = embed)
 
+    @commands.command()
+    @commands.guild_only()
+    async def docs(self, ctx):
+        embed = discord.Embed(title = "Documentation", description = "[Click here to visit our documentation!](https://dhb-documentation.readthedocs.io/en/latest/index.html)", color = discord.Color.blurple())
+        await ctx.send(embed = embed)
+
 def setup(bot):
     bot.add_cog(General(bot))
