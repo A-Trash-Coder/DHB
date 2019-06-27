@@ -13,7 +13,7 @@ class AutoResponder(commands.Cog):
     async def on_message(self, message):
         if message.author == self.bot.user:
             return
-            
+
         autorespondtable = await self.bot.pool.fetch("SELECT * FROM autorespond WHERE guildid = $1", message.guild.id)
 
         if autorespondtable == []:
@@ -22,7 +22,7 @@ class AutoResponder(commands.Cog):
         for responses in autorespondtable:
             trigger = responses["respondto"]
             response = responses["respondwith"]
-            if trigger in message.content:
+            if trigger.lower() in message.content:
                 if message.content.startswith("/autorespond"):
                     return
 
