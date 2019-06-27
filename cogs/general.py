@@ -54,10 +54,10 @@ class General(commands.Cog):
         if user is None:
             user = ctx.author
 
-        warns = await self.bot.pool.fetch("SELECT COUNT(*) FROM modcases WHERE caseuserid = $1 AND guildid = $2 AND casetype = $3", user.id, user.guild.id, "Warn")
-        kicks = await self.bot.pool.fetch("SELECT COUNT(*) FROM modcases WHERE caseuserid = $1 AND guildid = $2 AND casetype = $3", user.id, user.guild.id, "Kick")
-        bans = await self.bot.pool.fetch("SELECT COUNT(*) FROM modcases WHERE caseuserid = $1 AND guildid = $2 AND casetype = $3", user.id, user.guild.id, "Ban")
-        mutes = await self.bot.pool.fetch("SELECT COUNT(*) FROM modcases WHERE caseuserid = $1 AND guildid = $2 AND casetype = $3", user.id, user.guild.id, "Mute")
+        warns = await self.bot.pool.fetchval("SELECT COUNT(*) FROM modcases WHERE caseuserid = $1 AND guildid = $2 AND casetype = $3", user.id, user.guild.id, "Warn")
+        kicks = await self.bot.pool.fetchval("SELECT COUNT(*) FROM modcases WHERE caseuserid = $1 AND guildid = $2 AND casetype = $3", user.id, user.guild.id, "Kick")
+        bans = await self.bot.pool.fetchval("SELECT COUNT(*) FROM modcases WHERE caseuserid = $1 AND guildid = $2 AND casetype = $3", user.id, user.guild.id, "Ban")
+        mutes = await self.bot.pool.fetchval("SELECT COUNT(*) FROM modcases WHERE caseuserid = $1 AND guildid = $2 AND casetype = $3", user.id, user.guild.id, "Mute")
 
         embed=discord.Embed(title = f"{user.name}'s Information", color = discord.Color.blurple())
         embed.add_field(name = "Name:", value = user.mention)
