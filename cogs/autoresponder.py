@@ -22,7 +22,7 @@ class AutoResponder(commands.Cog):
         for responses in autorespondtable:
             trigger = responses["respondto"]
             response = responses["respondwith"]
-            if trigger.lower() in message.content:
+            if trigger in message.content:
                 if message.content.startswith("/autorespond"):
                     return
 
