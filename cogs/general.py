@@ -49,5 +49,23 @@ class General(commands.Cog):
         embed = discord.Embed(title = "Documentation", description = "[Click here to visit our documentation!](https://dhb-documentation.readthedocs.io/en/latest/index.html)", color = discord.Color.blurple())
         await ctx.send(embed = embed)
 
+    @commands.command()
+    async def userinfo(self, ctx, user: discord.Member = None):
+        if user is None:
+            user = ctx.author
+
+        embed=discord.Embed(title = f"{user.name}'s Information", color = discord.Color.blurple())
+        embed.add_field(name = "Name:", value = user.mention)
+        embed.add_field(name = "Name Hash:", value = user.name)
+        embed.add_field(name = "Nickname:", value = user.nick)
+        embed.add_field(name = "Account Created:", value = user.created_at.strftime("%m-%d-%Y"))
+        embed.add_field(name = "Joined Server At:", value = user.joined_at.strftime("%m-%d-%Y"))
+        embed.add_field(name = "ID:", value = user.id)
+        embed.add_field(name = "Status", value = user.status)
+        embed.add_field(name = "Activity:", value = user.activity)
+        embed.add_field(name = "Highest Role", value = user.top_role)
+        embed.add_field(name = (""), value = (""))
+        await ctx.send(embed=embed)
+
 def setup(bot):
     bot.add_cog(General(bot))
