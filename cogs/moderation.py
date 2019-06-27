@@ -171,6 +171,33 @@ class Moderation(commands.Cog):
         except discord.Forbidden:
             pass
 
+    @commands.command(aliases = ["warnings"])
+    async def warns(self, ctx, *, user: discord.Member = None):
+        if user is None:
+            user = ctx.author
+
+        warns = await self.bot.pool.execute("SELECT * FROM warns WHERE userid = $1 AND guildid = $2", user.id, ctx.guild.id)
+
+        if warns == []:
+            embed=discord.Embed(title = "Error", color = discord.Color.blurple(), description = "This user has not been warned")
+            await ctx.send(embed=embed)
+            return
+
+        pag = paginator.EmbedPaginator()
+
+        for warning in warns:
+            embed=discord.Embed(title= f"{user} has {len(warning)} warning(s)")
+
+            moderator = warning["modname"]
+            reason = warning["reason"]
+
+            embed.add_field(title = f"Warned by: {moderator}", value = f"For Reason: {reason}")
+
+            pag.add_page(embed)
+
+        interface = Paginator(ctx, pag)
+        await interface.send_pages()
+
     @commands.command()
     @commands.has_permissions(manage_guild = True)
     @commands.bot_has_permissions(manage_guild = True)
@@ -207,10 +234,11 @@ class Moderation(commands.Cog):
 
     @commands.command()
     @commands.has_permissions(kick_members = True)
-    async def cases(self, ctx):
+    async def cases(self, ctx, user: discord.Member = None):
         """Shows the amount of cases for the server."""
-        modcases = await self.bot.pool.fetch("SELECT * FROM modcases WHERE guildid = $1", ctx.guild.id)
 
+        modcases = await self.bot.pool.fetch("SELECT * FROM modcases WHERE guildid = $1", ctx.guild.id)
+        
         if modcases == []:
             em = discord.Embed(color = discord.Color.blurple())
             em.add_field(name = "Error", value = "No cases have been found.")
