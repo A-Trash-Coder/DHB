@@ -186,7 +186,8 @@ class Moderation(commands.Cog):
         pag = paginator.EmbedPaginator()
 
         for warning in warns:
-            embed=discord.Embed(title= f"{user} has {len(warning)} warning(s)")
+            count = await self.bot.pool.fetch("SELECT COUNT(*) FROM warns WHERE userid = $1 AND guildid = $2", user.id, ctx.guild.id)
+            embed=discord.Embed(title= f"{user} has {count} warning(s)")
 
             moderator = warning["modname"]
             reason = warning["reason"]
