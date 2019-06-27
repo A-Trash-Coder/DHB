@@ -187,7 +187,7 @@ class Moderation(commands.Cog):
 
         for warning in warns:
             count = await self.bot.pool.fetchval("SELECT COUNT(*) FROM warns WHERE userid = $1 AND guildid = $2", user.id, ctx.guild.id)
-            embed=discord.Embed(title= f"{user} has {count} warning(s)")
+            embed=discord.Embed(title= f"{user} has {count} warning(s)", color = discord.Color.blurple())
 
             moderator = warning["modname"]
             reason = warning["reason"]
