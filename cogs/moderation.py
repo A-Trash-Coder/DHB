@@ -155,7 +155,7 @@ class Moderation(commands.Cog):
 
         await self.uplogamount(ctx)
         await self.sendlog(ctx, "Warn", user, r)
-        await self.bot.pool.execute("INSERT INTO warns VALUES ($1, $2, $3, $4, $5, $6)",
+        await self.bot.pool.execute("INSERT INTO warns VALUES ($1, $2, $3, $4, $5)",
         user.id, ctx.guild.id, ctx.author.id, ctx.author.name,
         reason)
 
