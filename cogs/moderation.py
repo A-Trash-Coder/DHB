@@ -176,7 +176,7 @@ class Moderation(commands.Cog):
         if user is None:
             user = ctx.author
 
-        warns = await self.bot.pool.execute("SELECT * FROM warns WHERE userid = $1 AND guildid = $2", user.id, ctx.guild.id)
+        warns = await self.bot.pool.fetch("SELECT * FROM warns WHERE userid = $1 AND guildid = $2", user.id, ctx.guild.id)
 
         if warns == []:
             embed=discord.Embed(title = "Error", color = discord.Color.blurple(), description = "This user has not been warned")
@@ -191,7 +191,7 @@ class Moderation(commands.Cog):
             moderator = warning["modname"]
             reason = warning["reason"]
 
-            embed.add_field(title = f"Warned by: {moderator}", value = f"For Reason: {reason}")
+            embed.add_field(name = f"Warned by: {moderator}", value = f"For Reason: {reason}")
 
             pag.add_page(embed)
 
