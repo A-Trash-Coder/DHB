@@ -54,6 +54,11 @@ class General(commands.Cog):
         if user is None:
             user = ctx.author
 
+        warns = await self.bot.pool.fetch("SELECT COUNT(*) FROM modcases WHERE userid = $1, guilid = $2 AND casetype = $3", user.id, user.guild.id, "Warn")
+        kicks = await self.bot.pool.fetch("SELECT COUNT(*) FROM modcases WHERE userid = $1, guilid = $2 AND casetype = $3", user.id, user.guild.id, "Kick")
+        bans = await self.bot.pool.fetch("SELECT COUNT(*) FROM modcases WHERE userid = $1, guilid = $2 AND casetype = $3", user.id, user.guild.id, "Ban")
+        mutes = await self.bot.pool.fetch("SELECT COUNT(*) FROM modcases WHERE userid = $1, guilid = $2 AND casetype = $3", user.id, user.guild.id, "Mute")
+
         embed=discord.Embed(title = f"{user.name}'s Information", color = discord.Color.blurple())
         embed.add_field(name = "Name:", value = user.mention)
         embed.add_field(name = "Name Hash:", value = user.name)
@@ -65,6 +70,10 @@ class General(commands.Cog):
         embed.add_field(name = "Activity:", value = user.activity.name)
         embed.add_field(name = "Highest Role", value = user.top_role)
         embed.add_field(name = ( "​" ), value = ( "​" ))
+        embed.add_field(name = "Kicks:", value = kicks)
+        embed.add_field(name = "Bans:", value = bans)
+        embed.add_field(name = "Warns:", value = warns)
+        embed.add_field(name = "Mutes:", value = mutes)
         await ctx.send(embed=embed)
 
 def setup(bot):
