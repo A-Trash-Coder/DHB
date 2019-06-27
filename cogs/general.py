@@ -54,6 +54,11 @@ class General(commands.Cog):
         if user is None:
             user = ctx.author
 
+        if user.activity is None:
+            activity = "None"
+        else:
+            activity = user.activity.name
+
         warns = await self.bot.pool.fetchval("SELECT COUNT(*) FROM modcases WHERE caseuserid = $1 AND guildid = $2 AND casetype = $3", user.id, user.guild.id, "Warn")
         kicks = await self.bot.pool.fetchval("SELECT COUNT(*) FROM modcases WHERE caseuserid = $1 AND guildid = $2 AND casetype = $3", user.id, user.guild.id, "Kick")
         bans = await self.bot.pool.fetchval("SELECT COUNT(*) FROM modcases WHERE caseuserid = $1 AND guildid = $2 AND casetype = $3", user.id, user.guild.id, "Ban")
@@ -67,7 +72,7 @@ class General(commands.Cog):
         embed.add_field(name = "Joined Server At:", value = user.joined_at.strftime("%m-%d-%Y"))
         embed.add_field(name = "ID:", value = user.id)
         embed.add_field(name = "Status", value = user.status)
-        embed.add_field(name = "Activity:", value = user.activity.name)
+        embed.add_field(name = "Activity:", value = activity)
         embed.add_field(name = "Highest Role", value = user.top_role.mention)
         embed.add_field(name = ( "​" ), value = ( "​" ), inline = False)
         embed.add_field(name = "Kicks:", value = kicks)
