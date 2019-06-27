@@ -11,6 +11,9 @@ class AutoResponder(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
+        if message.author == self.bot.user:
+            return
+            
         autorespondtable = await self.bot.pool.fetch("SELECT * FROM autorespond WHERE guildid = $1", message.guild.id)
 
         if autorespondtable == []:
@@ -23,7 +26,9 @@ class AutoResponder(commands.Cog):
                 if message.content.startswith("/autorespond"):
                     return
 
-                await message.channel.send(responses)
+                await message.channel.send(response)
+            else:
+                return
 
 def setup(bot):
     bot.add_cog(AutoResponder(bot))
