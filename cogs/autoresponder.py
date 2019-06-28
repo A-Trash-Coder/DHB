@@ -35,7 +35,7 @@ class AutoResponder(commands.Cog):
     async def autorespond(self, ctx):
         return
 
-    @autorespond.commands()
+    @autorespond.command()
     async def add(self, ctx):
         def check(message):
             if message.channel.id != ctx.channel.id:
