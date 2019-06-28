@@ -15,6 +15,8 @@ import random
 # -> Database
 import asyncpg
 
+import datetime
+
 # Just incase the host is windows.
 if sys.platform == "win32":
     asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
@@ -44,6 +46,9 @@ class DHB(commands.AutoShardedBot):
         self.owners = [485915627530485760, 293800689266851850]
 
     async def on_ready(self):
+        if not hasattr(self, "uptime"):
+            self.uptime = datetime.datetime.utcnow()
+
             print(f"{self.user} is ready")
             print('Ready For Commands!')
             print(" ")
