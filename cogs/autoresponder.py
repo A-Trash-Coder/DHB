@@ -31,7 +31,7 @@ class AutoResponder(commands.Cog):
             else:
                 return
 
-    @commands.group()
+    @commands.group(invoke_without_command = True)
     async def autorespond(self, ctx):
         return
 
