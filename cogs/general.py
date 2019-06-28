@@ -31,6 +31,7 @@ class General(commands.Cog):
     @commands.command()
     @commands.guild_only()
     async def serverinfo(self, ctx):
+        """Shows server information"""
         embed = discord.Embed(title = f"Info for {ctx.guild.name}", color = discord.Color.blurple())
         embed.add_field(name = "Owner", value = ctx.guild.owner)
         embed.add_field(name = "ID", value = ctx.guild.id)
@@ -46,11 +47,13 @@ class General(commands.Cog):
     @commands.command()
     @commands.guild_only()
     async def docs(self, ctx):
+        """Gives a link to the documentation"""
         embed = discord.Embed(title = "Documentation", description = "[Click here to visit our documentation!](https://dhb-documentation.readthedocs.io/en/latest/index.html)", color = discord.Color.blurple())
         await ctx.send(embed = embed)
 
     @commands.command(aliases = ["ui"])
     async def userinfo(self, ctx, user: discord.Member = None):
+        """Shows information in a user, including warns, kicks, etc."""
         if user is None:
             user = ctx.author
 
