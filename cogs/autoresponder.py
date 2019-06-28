@@ -60,7 +60,7 @@ class AutoResponder(commands.Cog):
         trigger_word = trigger.content
         response_phrase = response.content
 
-        await self.bot.pool.execute("INSERT INTO autorespond VALUES ($1, $2, $3)", ctx.guild.id, trigger_word, response_phrase)
+        await self.bot.pool.execute("INSERT INTO autorespond VALUES ($1, $2, $3)", ctx.guild.id, f"{trigger_word}", f"{response_phrase}")
 
         embed = discord.Embed(title = "Done!", color = discord.Color.blurple())
         embed.add_field(name = f"{trigger_word} will be responded to with:", value = response_phrase)
