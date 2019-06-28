@@ -3,6 +3,7 @@ from discord.ext import commands
 import sys
 sys.path.append("../")
 import random
+import asyncio
 
 
 class AutoResponder(commands.Cog):
@@ -29,6 +30,41 @@ class AutoResponder(commands.Cog):
                 await message.channel.send(response)
             else:
                 return
+
+    @commands.command()
+    async def autorespond(self, ctx):
+        return
+
+    @autorespond.commands()
+    async def add(self, ctx):
+        def check(message):
+            if message.channel.id != ctx.channel.id:
+                return False
+            if message.author.id != ctx.author.id:
+                return False
+
+            return True
+
+        await ctx.send("What's the word you would like to trigger the response?")
+        try:
+            trigger = await self.bot.wait_for("message", check = check, timeout = 30)
+        except asyncio.TimeoutError:
+            return
+
+        await ctx.send("What would you like to respond with?")
+        try:
+            response = await self.bot.wait_for("message", check = check, timeout = 30)
+        except asyncio.TimeoutError:
+            return
+
+        trigger_word = trigger.content
+        response_phrase = response.content
+
+        await self.bot.pool.execute("INSERT INTO autorespond VALUES ($1, $2, $3)", ctx.guild.id, trigger_word, response_phrase)
+
+        embed = discord.Embed(title = "Done!", color = discord.Color.blurple())
+        embed.add_field(name = f"{trigger_word} will be responded to with:", value = response_phrase)
+        await ctx.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(AutoResponder(bot))
