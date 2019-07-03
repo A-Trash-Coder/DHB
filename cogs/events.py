@@ -9,7 +9,6 @@ import datetime
 class Events(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.logchannel = "593560052963606554"
 
     @commands.Cog.listener()
     async def on_message(self, message):
@@ -276,7 +275,7 @@ class Events(commands.Cog):
         em.add_field(name = "Member Count", value = f"{guild.member_count:,d}")
         em.add_field(name = "Channel Count", value = f"{len(guild.channels):,d}")
         em.add_field(name = "Creation Time", value = guild.created_at)
-        await self.bot.get_channel(self.logchannel).send(embed = em)
+        await self.bot.get_channel(593560052963606554).send(embed = em)
 
     @commands.Cog.listener()
     async def on_guild_remove(self, guild):
@@ -288,7 +287,7 @@ class Events(commands.Cog):
         em.add_field(name = "Member Count", value = f"{guild.member_count:,d}")
         em.add_field(name = "Channel Count", value = f"{len(guild.channels):,d}")
         em.add_field(name = "Creation Time", value = guild.created_at)
-        await self.bot.get_channel(self.logchannel).send(embed = em)
+        await self.bot.get_channel(593560052963606554).send(embed = em)
 
 
 def setup(bot):
