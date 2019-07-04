@@ -22,8 +22,11 @@ Sends you the link to this page.
 
 ### Administrative Commands
 
-`/adword [word]`
-This command adds a word to list of blocked words for the autmoderation module. The automod module must be turned on in order to work.
+`/addword [word]`
+This command adds a word to list of blocked words for the automoderation module. The automod module must be turned on in order to work.
+
+`/removeword [word]`
+This command removes a word from the list of blocked words for the automoderation module.
 
 `/automod`
 This command shows the available automod commands.
