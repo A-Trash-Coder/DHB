@@ -1,21 +1,15 @@
 import discord
-from discord.ext import commands, tasks
+from discord.ext import commands
 import sys
 sys.path.append("../")
 import random
 import datetime
-import config
-import aiohttp
-
 
 
 class Events(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.dboats.start() # pylint: disable=no-member
-
-    def cog_unload(self):
-        self.dboats.cancel() # pylint: disable=no-member
+        self.logchannel = "593560052963606554"
 
     @commands.Cog.listener()
     async def on_message(self, message):
@@ -282,32 +276,19 @@ class Events(commands.Cog):
         em.add_field(name = "Member Count", value = f"{guild.member_count:,d}")
         em.add_field(name = "Channel Count", value = f"{len(guild.channels):,d}")
         em.add_field(name = "Creation Time", value = guild.created_at)
-        await self.bot.get_channel(593560052963606554).send(embed = em)
+        await self.bot.get_channel(self.logchannel).send(embed = em)
 
     @commands.Cog.listener()
     async def on_guild_remove(self, guild):
         em = discord.Embed(title = "Left Guild", color = discord.Color.red(), timestamp = datetime.datetime.utcnow())
         em.set_thumbnail(url = guild.icon_url)
         em.add_field(name = "Name", value = guild.name)
-        em.add_field(name = "ID", value = str(guild.id))
-        em.add_field(name = "Owner", value = str(guild.owner))
+        em.add_field(name = "ID", value = guild.id)
+        em.add_field(name = "Owner", value = guild.owner)
         em.add_field(name = "Member Count", value = f"{guild.member_count:,d}")
         em.add_field(name = "Channel Count", value = f"{len(guild.channels):,d}")
         em.add_field(name = "Creation Time", value = guild.created_at)
-        await self.bot.get_channel(593560052963606554).send(embed = em)
-
-    @tasks.loop(minutes = 30)
-    async def dboats(self):
-        base = "https://discord.boats/api/v2"
-
-        async with aiohttp.ClientSession() as cs:
-            post = await cs.post(f"{base}/bot/{self.bot.user.id}",
-            headers = {"Authorization": config.dboatstoken}, data = {"server_count": len(self.bot.guilds)})
-            post = await post.json()
-
-    @dboats.before_loop
-    async def before_dboats(self):
-        await self.bot.wait_until_ready()
+        await self.bot.get_channel(self.logchannel).send(embed = em)
 
 
 def setup(bot):
