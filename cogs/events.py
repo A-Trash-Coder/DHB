@@ -268,25 +268,37 @@ class Events(commands.Cog):
     async def on_guild_join(self, guild):
         print(f"Joined guild named '{guild.name}' with {guild.member_count} members")
 
-        em = discord.Embed(title = "Joined Guild", color = discord.Color.green(), timestamp = datetime.datetime.utcnow())
+        logchannel = self.bot.get_channel(self.logchannel)
+        em = discord.Embed(title = "Joined Guild", color = discord.Color.blurple())
         em.set_thumbnail(url = guild.icon_url)
         em.add_field(name = "Name", value = guild.name)
-        em.add_field(name = "ID", value = guild.id)
-        em.add_field(name = "Owner", value = guild.owner)
+        em.add_field(name = "ID", value = str(guild.id))
+        em.add_field(name = "Owner", value = str(guild.owner))
         em.add_field(name = "Member Count", value = f"{guild.member_count:,d}")
+        em.add_field(name = "Verification Level", value = str(guild.verification_level))
         em.add_field(name = "Channel Count", value = f"{len(guild.channels):,d}")
-        await self.bot.get_channel(self.logchannel).send(embed = em)
+        em.add_field(name = "Creation Time", value = guild.created_at)
+
+        em.timestamp = datetime.datetime.utcnow()
+        await logchannel.send(embed = em)
 
     @commands.Cog.listener()
     async def on_guild_remove(self, guild):
-        em = discord.Embed(title = "Left Guild", color = discord.Color.red(), timestamp = datetime.datetime.utcnow())
+        print(f"Left guild named '{guild.name}' that had {guild.member_count} members")
+
+        logchannel = self.bot.get_channel(self.logchannel)
+        em = discord.Embed(title = "Left Guild", color = discord.Color.purple())
         em.set_thumbnail(url = guild.icon_url)
         em.add_field(name = "Name", value = guild.name)
-        em.add_field(name = "ID", value = guild.id)
-        em.add_field(name = "Owner", value = guild.owner)
+        em.add_field(name = "ID", value = str(guild.id))
+        em.add_field(name = "Owner", value = str(guild.owner))
         em.add_field(name = "Member Count", value = f"{guild.member_count:,d}")
+        em.add_field(name = "Verification Level", value = str(guild.verification_level))
         em.add_field(name = "Channel Count", value = f"{len(guild.channels):,d}")
-        await self.bot.get_channel(self.logchannel).send(embed = em)
+        em.add_field(name = "Creation Time", value = guild.created_at)
+
+        em.timestamp = datetime.datetime.utcnow()
+        await logchannel.send(embed = em)
 
 
 def setup(bot):
