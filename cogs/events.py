@@ -271,11 +271,10 @@ class Events(commands.Cog):
         em = discord.Embed(title = "Joined Guild", color = discord.Color.green(), timestamp = datetime.datetime.utcnow())
         em.set_thumbnail(url = guild.icon_url)
         em.add_field(name = "Name", value = guild.name)
-        em.add_field(name = "ID", value = str(guild.id))
-        em.add_field(name = "Owner", value = str(guild.owner))
+        em.add_field(name = "ID", value = guild.id)
+        em.add_field(name = "Owner", value = guild.owner)
         em.add_field(name = "Member Count", value = f"{guild.member_count:,d}")
         em.add_field(name = "Channel Count", value = f"{len(guild.channels):,d}")
-        em.add_field(name = "Creation Time", value = guild.created_at)
         await self.bot.get_channel(self.logchannel).send(embed = em)
 
     @commands.Cog.listener()
@@ -287,7 +286,6 @@ class Events(commands.Cog):
         em.add_field(name = "Owner", value = guild.owner)
         em.add_field(name = "Member Count", value = f"{guild.member_count:,d}")
         em.add_field(name = "Channel Count", value = f"{len(guild.channels):,d}")
-        em.add_field(name = "Creation Time", value = guild.created_at)
         await self.bot.get_channel(self.logchannel).send(embed = em)
 
 
