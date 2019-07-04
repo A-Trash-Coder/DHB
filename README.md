@@ -135,3 +135,5 @@ Sets the log for the guild.
 `/setmodlog`
 Sets the modlog for the guild.
 
+
+[![Discord Boats](https://discord.boats/api/v2/widget/592811241756688405)](https://discord.boats/bot/592811241756688405)
