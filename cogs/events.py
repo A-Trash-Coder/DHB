@@ -22,7 +22,7 @@ class Events(commands.Cog):
 
     @tasks.loop(minutes = 30)
     async def dboats(self):
-        base = "DISCORD.BOATS/API/V2"
+        base = "https://discord.boats/api/v2"
 
         async with aiohttp.ClientSession() as cs:
             post = await cs.post(f"{base}/bot/{self.bot.user.id}",
