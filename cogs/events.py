@@ -1,15 +1,42 @@
 import discord
-from discord.ext import commands
+from discord.ext import commands, tasks
 import sys
 sys.path.append("../")
 import random
 import datetime
+import asyncio
+import aiohttp
+import config
 
 
 class Events(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.logchannel = "593560052963606554"
+        self.dboats.start() # pylint: disable=no-member
+        self.bfd.start() # pylint: disable=no-member
+
+    async def cog_unload(self):
+        self.dboats.cancel() # pylint: disable=no-member
+        self.bfd.cancel() # pylint: disable=no-member
+
+    @tasks.loop(minutes = 30)
+    async def dboats(self):
+        base = "DISCORD.BOATS/API/V2"
+
+        async with aiohttp.ClientSession() as cs:
+            post = await cs.post(f"{base}/bot/{self.bot.user.id}/stats",
+            headers = {"Authorization": config.dboatstoken}, data = {"server_count": len(self.bot.guilds)})
+            post = await post.json()
+
+    @tasks.loop(minutes = 30)
+    async def bfd(self):
+        base = "https://botsfordiscord.com/api"
+
+        async with aiohttp.ClientSession() as cs:
+            post = await cs.post(f"{base}/bot/{self.bot.user.id}",
+            headers = {"Authorization": config.bfdtoken}, data = {"server_count": len(self.bot.guilds)})
+            post = await post.json()
 
     @commands.Cog.listener()
     async def on_message(self, message):
