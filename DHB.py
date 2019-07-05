@@ -43,7 +43,7 @@ class DHB(commands.AutoShardedBot):
             reconnect = True
         )
         self.pool = None
-        self.owners = [485915627530485760, 293800689266851850]
+        self.owners = [293800689266851850]
 
     async def on_ready(self):
         if not hasattr(self, "uptime"):
