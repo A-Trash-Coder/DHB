@@ -33,7 +33,19 @@ class Events(commands.Cog):
         if message.content.startswith("discord.gg/"):
                 await message.delete()
                 await message.channel.send(f"{message.author.mention}, you are not allowed to send invites in this server!")
+        if message.content.startswith("http://discord.gg/"):
+                await message.delete()
+                await message.channel.send(f"{message.author.mention}, you are not allowed to send invites in this server!")
+        if message.content.startswith("https://discord.gg/"):
+                await message.delete()
+                await message.channel.send(f"{message.author.mention}, you are not allowed to send invites in this server!")
         elif message.content.startswith("discordapp.com/invite"):
+            await message.delete()
+            await message.channel.send(f"{message.author.mention}, you are not allowed to send invites in this server!")
+        elif message.content.startswith("http://discordapp.com/invite"):
+            await message.delete()
+            await message.channel.send(f"{message.author.mention}, you are not allowed to send invites in this server!")
+        elif message.content.startswith("https://discordapp.com/invite"):
             await message.delete()
             await message.channel.send(f"{message.author.mention}, you are not allowed to send invites in this server!")
 
