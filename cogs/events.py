@@ -35,7 +35,7 @@ class Events(commands.Cog):
 
         async with aiohttp.ClientSession() as cs:
             post = await cs.post(f"{base}/bot/{self.bot.user.id}",
-            headers = {"Authorization": config.bfdtoken}, data = {"server_count": len(self.bot.guilds)})
+            headers = {"Authorization": config.bfdtoken, "Content-Type": "application/json"}, data = {"server_count": len(self.bot.guilds)})
             post = await post.json()
 
     @commands.Cog.listener()
