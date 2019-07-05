@@ -12,7 +12,7 @@ import config
 class Events(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.logchannel = "593560052963606554"
+        self.logchannel = "596797905528946734"
         self.dboats.start() # pylint: disable=no-member
         self.bfd.start() # pylint: disable=no-member
 
