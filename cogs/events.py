@@ -25,7 +25,7 @@ class Events(commands.Cog):
         base = "DISCORD.BOATS/API/V2"
 
         async with aiohttp.ClientSession() as cs:
-            post = await cs.post(f"{base}/bot/{self.bot.user.id}/stats",
+            post = await cs.post(f"{base}/bot/{self.bot.user.id}",
             headers = {"Authorization": config.dboatstoken}, data = {"server_count": len(self.bot.guilds)})
             post = await post.json()
 
