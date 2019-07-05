@@ -84,5 +84,14 @@ class General(commands.Cog):
         embed.add_field(name = "Mutes:", value = mutes)
         await ctx.send(embed=embed)
 
+    @commands.command()
+    async def vote(self, ctx):
+        """Shows Bot Lists Where Users Can Vote"""
+        embed = discord.Embed(title = "Here are some bot lists that you can vote for me on, voters may soon™ recieve perks", color = discord.Color.blurple())
+        embed.add_field(name = "Bots For Discord", value = "[Click Here](https://botsfordiscord.com/bot/592811241756688405/vote)")
+        embed.add_field(name = "Discord Boats", value = "[Click Here](https://discord.boats/bot/592811241756688405/vote)")
+        embed.set_thumbnail(url = self.bot.user.avatar_url)
+        await ctx.send(embed = embed)
+
 def setup(bot):
     bot.add_cog(General(bot))
