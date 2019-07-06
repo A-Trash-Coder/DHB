@@ -36,7 +36,7 @@ class Events(commands.Cog):
                 }
         try:
             requests.post(f"{base}/bot/{self.bot.user.id}", data=json.dumps(data), headers=headers)
-        except Exception as e:
+        except Exception as error:
             print(f"\n{error}\n")
 
 
