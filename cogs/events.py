@@ -30,7 +30,10 @@ class Events(commands.Cog):
             post = await cs.post(f"{base}/bot/{self.bot.user.id}",
             headers = {"Authorization": config.dboatstoken}, data = {"server_count": len(self.bot.guilds)})
             post = await post.json()
-            print("Posted guild count to Discord.Boats")
+            if "error" in post:
+                print(f"Couldn't post server count, {post['error']}")
+            else:
+                print("Posted guild count to Discord.Boats")
 
 
     @tasks.loop(minutes = 30)
@@ -41,7 +44,11 @@ class Events(commands.Cog):
             post = await cs.post(f"{base}/bot/{self.bot.user.id}",
             headers = {"Authorization": config.bfdtoken, "Content-Type": "application/json"}, data = {"server_count": len(self.bot.guilds)})
             post = await post.json()
-            print("Posted guild count to Bots For Discord")
+
+            if "error" in post:
+                print(f"Couldn't post server count, {post['error']}")
+            else:
+                print("Posted guild count to Bots For Discord")
 
 
     @tasks.loop(minutes = 30)
@@ -52,7 +59,10 @@ class Events(commands.Cog):
             post = await cs.post(f"{base}/bot/{self.bot.user.id}/stats",
             headers = {"authorization": config.ddbtoken, "content-type": "application/json"}, data = {"server_count": len(self.bot.guilds)})
             post = await post.json()
-            print("Posted guild count to Divine Discord Bots")
+            if "error" in post:
+                print(f"Couldn't post server count, {post['error']}")
+            else:
+                print("Posted guild count to Divine Discord Bots")
 
     @commands.Cog.listener()
     async def on_message(self, message):
