@@ -8,6 +8,8 @@ import asyncio
 import aiohttp
 import config
 from ddblapi import DivineAPI
+import json
+import requests
 
 
 class Events(commands.Cog):
@@ -27,14 +29,16 @@ class Events(commands.Cog):
     async def dboats(self):
         base = "https://discord.boats/api/v2"
 
-        async with aiohttp.ClientSession() as cs:
-            post = await cs.post(f"{base}/bot/{self.bot.user.id}",
-            headers = {"Authorization": config.dboatstoken}, data = {"server_count": len(self.bot.guilds)})
-            post = await post.json()
-            if "error" in post:
-                print(f"Couldn't post server count, {post['error']}")
-            else:
-                print("Posted guild count to Discord.Boats")
+        data = {"server_count": len(self.bot.guilds)}
+        headers = {
+                "content-type": "APPLICATION/JSON",
+                "Authorization": config.dboatstoken
+                }
+        try:
+            requests.post(f"{base}/bot/{self.bot.user.id}", data=json.dumps(data), headers=headers)
+        except Exception as e:
+            print(f"\n{error}\n")
+
 
 
     @tasks.loop(minutes = 30)
