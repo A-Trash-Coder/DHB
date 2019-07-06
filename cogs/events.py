@@ -7,6 +7,7 @@ import datetime
 import asyncio
 import aiohttp
 import config
+import json
 
 
 class Events(commands.Cog):
@@ -53,16 +54,20 @@ class Events(commands.Cog):
 
     @tasks.loop(minutes = 30)
     async def ddb(self):
-        base = "https://divinediscordbots.com"
+        owner_id = f"{self.bot.owners.id[0]}"
+        bot_id = f"{self.bot.user.id}"
+        api_key = f"{config.ddbtoken}"
 
-        async with aiohttp.ClientSession() as cs:
-            post = await cs.post(f"{base}/bot/{self.bot.user.id}/stats",
-            headers = {"authorization": config.ddbtoken, "content-type": "application/json"}, data = {"server_count": len(self.bot.guilds)})
-            post = await post.json()
-            if "error" in post:
-                print(f"Couldn't post server count, {post['error']}")
-            else:
-                print("Posted guild count to Divine Discord Bots")
+        ddbl = DivineAPI(bot_id=bot_id, api_key=api_key)
+
+        server_count = len(self.bot.guilds)
+        post_stats = await ddbl.post_stats(server_count)
+        
+        if post_stats['error']:
+            print(f"An error has occured:\n{post_stats['response']}")
+        else:
+            print('Successfully posted stats on Divine Discord Bot List !')
+
 
     @commands.Cog.listener()
     async def on_message(self, message):
