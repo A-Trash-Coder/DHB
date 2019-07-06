@@ -15,10 +15,12 @@ class Events(commands.Cog):
         self.logchannel = "596797905528946734"
         self.dboats.start() # pylint: disable=no-member
         self.bfd.start() # pylint: disable=no-member
+        self.ddb.start() # pylint: disable=no-member
 
     async def cog_unload(self):
-        self.dboats.cancel() # pylint: disable=no-member
-        self.bfd.cancel() # pylint: disable=no-member
+        await self.dboats.cancel() # pylint: disable=no-member
+        await self.bfd.cancel() # pylint: disable=no-member
+        await self.ddb.cancel() # pylint: disable=no-member
 
     @tasks.loop(minutes = 30)
     async def dboats(self):
@@ -36,6 +38,15 @@ class Events(commands.Cog):
         async with aiohttp.ClientSession() as cs:
             post = await cs.post(f"{base}/bot/{self.bot.user.id}",
             headers = {"Authorization": config.bfdtoken, "Content-Type": "application/json"}, data = {"server_count": len(self.bot.guilds)})
+            post = await post.json()
+
+    @tasks.loop(minutes = 30)
+    async def ddb(self):
+        base = "https://divinediscordbots.com"
+
+        async with aiohttp.ClientSession() as cs:
+            post = await cs.post(f"{base}/bot/{self.bot.user.id}/stats",
+            headers = {"Authorization": config.ddbtoken, "Content-Type": "application/json"}, data = {"guild_count": len(self.bot.guilds)})
             post = await post.json()
 
     @commands.Cog.listener()
