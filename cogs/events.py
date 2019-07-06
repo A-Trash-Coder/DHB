@@ -7,7 +7,7 @@ import datetime
 import asyncio
 import aiohttp
 import config
-import json
+from ddblapi import DivineAPI
 
 
 class Events(commands.Cog):
@@ -54,7 +54,6 @@ class Events(commands.Cog):
 
     @tasks.loop(minutes = 30)
     async def ddb(self):
-        owner_id = f"{self.bot.owners.id[0]}"
         bot_id = f"{self.bot.user.id}"
         api_key = f"{config.ddbtoken}"
 
