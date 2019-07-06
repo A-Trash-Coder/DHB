@@ -37,7 +37,7 @@ class Events(commands.Cog):
         try:
             requests.post(f"{base}/bot/{self.bot.user.id}", data=json.dumps(data), headers=headers)
             print("Posted Server Count to DBOATS")
-        except Exception as erro:
+        except Exception as error:
             print(f"\n{error}\n")
 
 
