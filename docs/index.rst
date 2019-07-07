@@ -1,7 +1,7 @@
 Welcome to DHB Documentation
 ===========================
 
-.. image:: /bot.png
+.. image:: /docs/bot.png
 
 
 DHB is a bot made for Discord Hackweek 2019 in the moderation category.
