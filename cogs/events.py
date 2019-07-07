@@ -46,15 +46,17 @@ class Events(commands.Cog):
     async def bfd(self):
         base = "https://botsfordiscord.com/api"
 
-        async with aiohttp.ClientSession() as cs:
-            post = await cs.post(f"{base}/bot/{self.bot.user.id}",
-            headers = {"Authorization": config.bfdtoken, "Content-Type": "application/json"}, data = {"server_count": len(self.bot.guilds)})
-            post = await post.json()
 
-            if "error" in post:
-                print(f"Couldn't post server count, {post['error']}")
-            else:
-                print("Posted guild count to Bots For Discord")
+        data = {"server_count": len(self.bot.guilds)}
+        headers = {
+                "content-type": "APPLICATION/JSON",
+                "Authorization": config.bfdtoken
+                }
+        try:
+            requests.post(f"{base}/bot/{self.bot.user.id}", data=json.dumps(data), headers=headers)
+            print("Posted Server Count to Bots For Discord")
+        except Exception as error:
+            print(f"\n{error}\n")
 
 
     @tasks.loop(minutes = 30)
