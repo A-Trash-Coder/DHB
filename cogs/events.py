@@ -61,18 +61,20 @@ class Events(commands.Cog):
 
     @tasks.loop(minutes = 30)
     async def ddb(self):
-        bot_id = f"{self.bot.user.id}"
-        api_key = f"{config.ddbtoken}"
+        base = "https://discord.boats/api/v2""
 
-        ddbl = DivineAPI(bot_id=bot_id, api_key=api_key)
 
-        server_count = len(self.bot.guilds)
-        post_stats = await ddbl.post_stats(server_count)
-        
-        if post_stats['error']:
-            print(f"An error has occured:\n{post_stats['response']}")
-        else:
-            print('Successfully posted stats on Divine Discord Bot List !')
+        data = {"server_count": len(self.bot.guilds)}
+        headers = {
+                "content-type": "APPLICATION/JSON",
+                "Authorization": config.ddbtoken
+                }
+        try:
+            requests.post(f"{base}/bot/{self.bot.user.id}/stats", data=json.dumps(data), headers=headers)
+            print("Posted Server Count to Divine Discord Bots")
+        except Exception as error:
+            print(f"\n{error}\n")
+
 
 
     @commands.Cog.listener()
