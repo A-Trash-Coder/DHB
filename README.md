@@ -140,3 +140,8 @@ Sets the modlog for the guild.
 
 
 [![Discord Boats](https://discord.boats/api/v2/widget/592811241756688405)](https://discord.boats/bot/592811241756688405)
+
+[![Divine Discord Bots](https://divinediscordbots.com/api/widget/592811241756688405.svg)](https://divinediscordbots.com/bot/592811241756688405)
+
+[![Bots for Discord](https://botsfordiscord.com/api/bot/592811241756688405/widget.svg)](https://botsfordiscord.com/bots/592811241756688405)
+
