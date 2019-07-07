@@ -35,6 +35,11 @@ General Commands
     Sends you the link to this page.
 
 
+.. data:: /vote
+
+    Shows bot list where you can upvote the bot, soon you will recieve perks for doing so.
+
+
 Administrative Commands
 ---------------------
 

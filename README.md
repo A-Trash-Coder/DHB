@@ -20,6 +20,9 @@ Shows information on the server.
 `/docs`
 Sends you the link to this page.
 
+`/vote`
+Shows different bot list where you can upvote the bot, you will soon recieve perks for doing so.
+
 ### Administrative Commands
 
 `/addword [word]`
