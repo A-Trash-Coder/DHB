@@ -145,3 +145,5 @@ Sets the modlog for the guild.
 
 [![Bots for Discord](https://botsfordiscord.com/api/bot/592811241756688405/widget.svg)](https://botsfordiscord.com/bots/592811241756688405)
 
+[![Hack Bot's Widget](https://botlist.space/bot/592811241756688405/widget/7 "Hack Bot's Widget")](https://botlist.space/bot/592811241756688405?utm_source=bls&utm_medium=widget&utm_campaign=592811241756688405)
+

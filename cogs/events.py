@@ -19,11 +19,13 @@ class Events(commands.Cog):
         self.dboats.start() # pylint: disable=no-member
         self.bfd.start() # pylint: disable=no-member
         self.ddb.start() # pylint: disable=no-member
+        self.bls.start() # pylint: disable=no-member
 
     async def cog_unload(self):
         await self.dboats.cancel() # pylint: disable=no-member
         await self.bfd.cancel() # pylint: disable=no-member
         await self.ddb.cancel() # pylint: disable=no-member
+        await self.bls.cancel() # pylint: disable=no-member
 
     @tasks.loop(minutes = 30)
     async def dboats(self):
@@ -72,6 +74,22 @@ class Events(commands.Cog):
         try:
             requests.post(f"{base}/bot/{self.bot.user.id}/stats", data=json.dumps(data), headers=headers)
             print("Posted Server Count to Divine Discord Bots")
+        except Exception as error:
+            print(f"\n{error}\n")
+
+    @tasks.loop(minutes = 30)
+    async def bls(self):
+        base = "https://api.botlist.space/v1/bots/"
+
+
+        data = {"server_count": len(self.bot.guilds)}
+        headers = {
+                "content-type": "APPLICATION/JSON",
+                "Authorization": config.blstoken
+                }
+        try:
+            requests.post(f"{base}/bot/{self.bot.user.id}", data=json.dumps(data), headers=headers)
+            print("Posted Server Count to Botlist.space")
         except Exception as error:
             print(f"\n{error}\n")
 

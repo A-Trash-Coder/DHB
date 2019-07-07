@@ -91,6 +91,7 @@ class General(commands.Cog):
         embed.add_field(name = "Bots For Discord", value = "[Click Here](https://botsfordiscord.com/bot/592811241756688405/vote)")
         embed.add_field(name = "Discord Boats", value = "[Click Here](https://discord.boats/bot/592811241756688405/vote)")
         embed.add_field(name = "Divine Discord Bots", value = "[Click Here](https://divinediscordbots.com/bot/592811241756688405/vote)")        
+        embed.add_field(name = "Botlist.space", value = "[Click Here](https://botlist.space/bot/592811241756688405/upvote)")        
         embed.set_thumbnail(url = self.bot.user.avatar_url)
         await ctx.send(embed = embed)
 
