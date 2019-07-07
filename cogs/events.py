@@ -79,7 +79,7 @@ class Events(commands.Cog):
 
     @tasks.loop(minutes = 30)
     async def bls(self):
-        base = "https://api.botlist.space/v1/bots/"
+        base = "https://api.botlist.space/v1/bots"
 
 
         data = {"server_count": len(self.bot.guilds)}
