@@ -61,7 +61,7 @@ class Events(commands.Cog):
 
     @tasks.loop(minutes = 30)
     async def ddb(self):
-        base = "https://discord.boats/api/v2""
+        base = "https://discord.boats/api/v2"
 
 
         data = {"server_count": len(self.bot.guilds)}
