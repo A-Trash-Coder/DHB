@@ -15,7 +15,6 @@ import requests
 class Events(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.logchannel = "596797905528946734"
         self.dboats.start() # pylint: disable=no-member
         self.bfd.start() # pylint: disable=no-member
         self.ddb.start() # pylint: disable=no-member
@@ -376,13 +375,12 @@ class Events(commands.Cog):
         em.add_field(name = "Creation Time", value = guild.created_at)
 
         em.timestamp = datetime.datetime.utcnow()
-        await logchannel.send(embed = em)
+        await self.bot.get_channel(597314486029778944).send(embed = em)
 
     @commands.Cog.listener()
     async def on_guild_remove(self, guild):
         print(f"Left guild named '{guild.name}' that had {guild.member_count} members")
 
-        logchannel = self.bot.get_channel(self.logchannel)
         em = discord.Embed(title = "Left Guild", color = discord.Color.purple())
         em.set_thumbnail(url = guild.icon_url)
         em.add_field(name = "Name", value = guild.name)
@@ -394,7 +392,7 @@ class Events(commands.Cog):
         em.add_field(name = "Creation Time", value = guild.created_at)
 
         em.timestamp = datetime.datetime.utcnow()
-        await logchannel.send(embed = em)
+        await self.bot.get_channel(597314486029778944).send(embed = em)
 
 
 def setup(bot):
