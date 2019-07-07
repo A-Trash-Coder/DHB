@@ -363,7 +363,6 @@ class Events(commands.Cog):
     async def on_guild_join(self, guild):
         print(f"Joined guild named '{guild.name}' with {guild.member_count} members")
 
-        logchannel = self.bot.get_channel(self.logchannel)
         em = discord.Embed(title = "Joined Guild", color = discord.Color.blurple())
         em.set_thumbnail(url = guild.icon_url)
         em.add_field(name = "Name", value = guild.name)
