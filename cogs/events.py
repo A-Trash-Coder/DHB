@@ -79,7 +79,7 @@ class Events(commands.Cog):
 
     @tasks.loop(minutes = 30)
     async def bls(self):
-        base = "https://api.botlist.space/v1/bots"
+        base = "https://api.botlist.space/v1"
 
 
         data = {"server_count": len(self.bot.guilds)}
@@ -88,7 +88,7 @@ class Events(commands.Cog):
                 "Authorization": config.blstoken
                 }
         try:
-            requests.post(f"{base}/bot/{self.bot.user.id}", data=json.dumps(data), headers=headers)
+            requests.post(f"{base}/bots/{self.bot.user.id}", data=json.dumps(data), headers=headers)
             print("Posted Server Count to Botlist.space")
         except Exception as error:
             print(f"\n{error}\n")
