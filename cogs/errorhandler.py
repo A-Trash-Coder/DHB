@@ -18,12 +18,12 @@ class ErrorHandler(commands.Cog):
                 pass
 
         errors = {
-            commands.MissingPermissions: {"msg": "You do not have the correct permissions to run this command.", "ty": "Missing Permissions"},
-            commands.NSFWChannelRequired: {"msg": "This command cannot be run in Non-NSFW channels.", "ty": "NSFW Command"},
+            commands.MissingPermissions: {"msg": "You do not have the correct permissions to run this command.", "ty": "Insufficient Permissions"},
+            commands.NSFWChannelRequired: {"msg": "This command must be run in a NSFW channels.", "ty": "NSFW Command"},
             commands.BotMissingPermissions: {"msg": "I do not have the correct permissions.", "ty": "Bot Missing Permissions"},
             discord.HTTPException: {"msg": "There was an error contacting Discord.", "ty": "HTTP Exception"},
             commands.CommandInvokeError: {"msg": "An Exception occurred while  running the command.\n[ERROR]", "ty": "Command Error"},
-            commands.NotOwner: {"msg": "You aren't the owner of this bot.", "ty": "Low Permissions"},
+            commands.NotOwner: {"msg": "You aren't the owner of this bot.", "ty": "Insufficient Permissions"},
             commands.BadArgument: {"msg": "A `Bad Argument` Exception occurred.", "ty": "Bad Argument"}
         }
 

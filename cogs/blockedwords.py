@@ -40,7 +40,7 @@ class BlockedWords(commands.Cog):
                     return
 
                 await message.delete()
-                await message.channel.send(f"{message.author.mention}, you are not allowed to say that word in this server!")
+                await message.channel.send(f"{message.author.mention}, you are not allowed to say that word in this server!", delete_after = 10)
 
 def setup(bot):
     bot.add_cog(BlockedWords(bot))

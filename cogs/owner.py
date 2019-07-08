@@ -140,14 +140,6 @@ class Owner(commands.Cog):
             embed=discord.Embed(colour=discord.Color.green(), description=f"Successfully loaded {name} {self.checkmark}")
             await ctx.send(embed=embed)
 
-    @commands.command(hidden=True)
-    @commands.guild_only()
-    @commands.is_owner()
-    async def restart(self, ctx):
-        """Restarts the host system."""
-        await ctx.send("**Restarting System...**")
-        os.system("Shutdown.exe -r")
-
     @commands.command()
     @commands.guild_only()
     @commands.is_owner()
