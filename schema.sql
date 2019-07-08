@@ -53,9 +53,3 @@ CREATE TABLE IF NOT EXISTS loggingsettings (
     bulk_message_delete BOOL DEFAULT TRUE,
     message_edit BOOL DEFAULT TRUE
 );
-
-CREATE TABLE IF NOT EXISTS autorespond (
-    guildid BIGINT NOT NULL,
-    respondto TEXT NOT NULL,
-    respondwith TEXT NOT NULL
-);
