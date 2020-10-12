@@ -1,4 +1,4 @@
-![Discord](https://img.shields.io/discord/593558189962821674.svg) [![Py V](https://img.shields.io/badge/python-3.7-blue.svg)](https://python.org)
+[![Py V](https://img.shields.io/badge/python-3.7-blue.svg)](https://python.org)
 
 # Hack Bot
 Hack Bot is a discord bot originally made for discord hack week but it was so good we put it out to the rest of the world. Do you have any more questions about the bot? Send a DM to **Kowlin#4417 or A Trash Coder#0981** or join the [Support Server](https://discord.gg/6nzsh5X).
