@@ -142,13 +142,3 @@ Sets the log for the guild.
 
 `/setmodlog`
 Sets the modlog for the guild.
-
-
-[![Discord Boats](https://discord.boats/api/v2/widget/592811241756688405)](https://discord.boats/bot/592811241756688405)
-
-[![Divine Discord Bots](https://divinediscordbots.com/api/widget/592811241756688405.svg)](https://divinediscordbots.com/bot/592811241756688405)
-
-[![Bots for Discord](https://botsfordiscord.com/api/bot/592811241756688405/widget.svg)](https://botsfordiscord.com/bots/592811241756688405)
-
-[![Hack Bot's Widget](https://botlist.space/bot/592811241756688405/widget/7 "Hack Bot's Widget")](https://botlist.space/bot/592811241756688405?utm_source=bls&utm_medium=widget&utm_campaign=592811241756688405)
-
